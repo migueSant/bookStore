@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.pluralsight.bookstore.repository.BookRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.062 sec <<< FAILURE! - in com.pluralsight.bookstore.repository.BookRepositoryTest
+initializationError(com.pluralsight.bookstore.repository.BookRepositoryTest)  Time elapsed: 0.008 sec  <<< ERROR!
+java.lang.Exception: No runnable methods
+

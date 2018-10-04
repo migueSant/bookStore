@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.pluralsight.bookstore.rest.BookEndpointTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.114 sec <<< FAILURE! - in com.pluralsight.bookstore.rest.BookEndpointTest
+com.pluralsight.bookstore.rest.BookEndpointTest  Time elapsed: 3.114 sec  <<< ERROR!
+org.jboss.arquillian.container.spi.client.container.DeploymentException: Cannot deploy: 973f08be-9e56-4b45-8d48-042bbc8b0862.war
+Caused by: java.net.ConnectException: Connection refused: no further information
+

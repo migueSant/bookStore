@@ -1,42 +1,77 @@
 package com.pluralsight.bookstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@ApiModel(description = "Book resource representation")
 public class Book {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty("Identifier")
     private Long id;
 
     @Column(length = 200)
+    @NotNull
+    @Size(min = 1, max = 200)
+    @ApiModelProperty("Title of the book")
     private String title;
 
-    @Column(length = 1000)
+    @Column(length = 10000)
+    @Size(min = 1, max = 10000)
+    @ApiModelProperty("Description")
     private String description;
 
     @Column(name = "unit_cost")
+    @Min(1)
+    @ApiModelProperty("Price per unit")
     private Float unitCost;
 
-
+    @Column(length = 50)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @ApiModelProperty("ISBN number")
     private String isbn;
 
     @Column(name = "publication_date")
     @Temporal(TemporalType.DATE)
+    @Past
+    @ApiModelProperty("Publication date")
     private Date publicationDate;
 
+    @Column(name = "nb_of_pages")
+    @ApiModelProperty("No. Pages")
     private Integer nbOfPages;
 
     @Column(name = "image_url")
-    private String imageUrl;
+    @ApiModelProperty("Image")
+    private String imageURL;
 
+    @Enumerated
+    @ApiModelProperty( value = "Language in which the book has been written")
     private Language language;
+
+    public Book() {
+    }
+
+    public Book(String isbn, String title, Float unitCost, Integer nbOfPages, Language language, Date publicationDate, String imageURL, String description) {
+        this.isbn = isbn;
+        this.title = title;
+        this.unitCost = unitCost;
+        this.nbOfPages = nbOfPages;
+        this.language = language;
+        this.publicationDate = publicationDate;
+        this.imageURL = imageURL;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -86,22 +121,6 @@ public class Book {
         this.publicationDate = publicationDate;
     }
 
-    public Integer getNbOfPages() {
-        return nbOfPages;
-    }
-
-    public void setNbOfPages(Integer nbOfPages) {
-        this.nbOfPages = nbOfPages;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public Language getLanguage() {
         return language;
     }
@@ -110,18 +129,32 @@ public class Book {
         this.language = language;
     }
 
+    public Integer getNbOfPages() {
+        return nbOfPages;
+    }
+
+    public void setNbOfPages(Integer nbOfPages) {
+        this.nbOfPages = nbOfPages;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imagURL) {
+        this.imageURL = imagURL;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", unitCost=" + unitCost +
-                ", isbn='" + isbn + '\'' +
-                ", publicationDate=" + publicationDate +
-                ", nbOfPages=" + nbOfPages +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", language=" + language +
-                '}';
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", unitCost=" + unitCost +
+            ", isbn='" + isbn + '\'' +
+            ", publicationDate=" + publicationDate +
+            ", language=" + language +
+            '}';
     }
 }
